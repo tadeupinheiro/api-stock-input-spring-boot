@@ -2,7 +2,6 @@ package dev.tadeupinheiro.apistockinputspringboot.models;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
@@ -12,10 +11,6 @@ public class ProductModel {
 
     @Id
     private UUID rollNumber;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_article", nullable = false)
-    private ArticleModel articleModel;
 
     @Nullable
     private double weigth;
@@ -34,4 +29,64 @@ public class ProductModel {
 
     @Nullable
     private String invoiceDate;
+
+    public UUID getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(UUID rollNumber) {
+        this.rollNumber = rollNumber;
+    }
+
+    public double getWeigth() {
+        return weigth;
+    }
+
+    public void setWeigth(double weigth) {
+        this.weigth = weigth;
+    }
+
+    @Nullable
+    public String getTreatment() {
+        return treatment;
+    }
+
+    public void setTreatment(@Nullable String treatment) {
+        this.treatment = treatment;
+    }
+
+    public double getCostPrice() {
+        return costPrice;
+    }
+
+    public void setCostPrice(double costPrice) {
+        this.costPrice = costPrice;
+    }
+
+    @Nullable
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(@Nullable String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    @Nullable
+    public String getInvoiceNumber() {
+        return invoiceNumber;
+    }
+
+    public void setInvoiceNumber(@Nullable String invoiceNumber) {
+        this.invoiceNumber = invoiceNumber;
+    }
+
+    @Nullable
+    public String getInvoiceDate() {
+        return invoiceDate;
+    }
+
+    public void setInvoiceDate(@Nullable String invoiceDate) {
+        this.invoiceDate = invoiceDate;
+    }
 }
