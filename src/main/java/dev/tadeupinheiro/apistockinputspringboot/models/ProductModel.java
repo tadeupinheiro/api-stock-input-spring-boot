@@ -12,6 +12,17 @@ public class ProductModel {
     @Id
     private UUID rollNumber;
 
+    @ManyToOne
+    @JoinColumn(name = "article_id", nullable = false) //Define o nome da coluna da chave estrangeira
+    private ArticleModel articleRelationship;
+
+    @ManyToOne
+    @JoinColumn(name = "color_id", nullable = false) //Define o nome da coluna da chave estrangeira
+    private ColorModel colorRelationship;
+
+    @Nullable
+    private double size;
+
     @Nullable
     private double weigth;
 
@@ -36,6 +47,14 @@ public class ProductModel {
 
     public void setRollNumber(UUID rollNumber) {
         this.rollNumber = rollNumber;
+    }
+    @Nullable
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
     }
 
     public double getWeigth() {

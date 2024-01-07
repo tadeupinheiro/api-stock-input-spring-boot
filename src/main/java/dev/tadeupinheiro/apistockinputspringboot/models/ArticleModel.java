@@ -3,8 +3,10 @@ package dev.tadeupinheiro.apistockinputspringboot.models;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,11 +19,8 @@ public class ArticleModel {
     @Nullable
     private String articleName;
 
-    @Nullable
-    private String colorCode;
-
-    @Nullable
-    private String colorName;
+    @OneToMany(mappedBy = "articleRelationship")
+    private List<ProductModel> productModel;
 
     @Nullable
     private String composition;
@@ -52,23 +51,6 @@ public class ArticleModel {
         this.articleName = articleName;
     }
 
-    @Nullable
-    public String getColorCode() {
-        return colorCode;
-    }
-
-    public void setColorCode(@Nullable String colorCode) {
-        this.colorCode = colorCode;
-    }
-
-    @Nullable
-    public String getColorName() {
-        return colorName;
-    }
-
-    public void setColorName(@Nullable String colorName) {
-        this.colorName = colorName;
-    }
 
     @Nullable
     public String getComposition() {
