@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<ArticleModel, UUID> {
+    boolean existsByArticleCode(UUID articleCode);
 }

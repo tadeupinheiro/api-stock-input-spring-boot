@@ -18,12 +18,6 @@ public class ArticleModel {
     private String articleName;
 
     @Nullable
-    private String colorCode;
-
-    @Nullable
-    private String colorName;
-
-    @Nullable
     private String composition;
 
     @Nullable
@@ -50,24 +44,6 @@ public class ArticleModel {
 
     public void setArticleName(@Nullable String articleName) {
         this.articleName = articleName;
-    }
-
-    @Nullable
-    public String getColorCode() {
-        return colorCode;
-    }
-
-    public void setColorCode(@Nullable String colorCode) {
-        this.colorCode = colorCode;
-    }
-
-    @Nullable
-    public String getColorName() {
-        return colorName;
-    }
-
-    public void setColorName(@Nullable String colorName) {
-        this.colorName = colorName;
     }
 
     @Nullable
