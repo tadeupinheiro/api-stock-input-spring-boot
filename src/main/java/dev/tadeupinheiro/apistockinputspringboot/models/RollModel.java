@@ -3,7 +3,7 @@ package dev.tadeupinheiro.apistockinputspringboot.models;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.ManyToOne;
 
 import java.util.UUID;
 
@@ -22,17 +22,9 @@ public class RollModel {
     @Nullable
     private String treatment;
 
-    @Nullable
-    private double costPrice;
+    @ManyToOne
+    private ArticleModel article;
 
-    @Nullable
-    private String orderNumber;
-
-    @Nullable
-    private String invoiceNumber;
-
-    @Nullable
-    private String invoiceDate;
 
     public UUID getRollNumber() {
         return rollNumber;
@@ -58,47 +50,19 @@ public class RollModel {
         this.weigth = weigth;
     }
 
-    @Nullable
     public String getTreatment() {
         return treatment;
     }
 
-    public void setTreatment(@Nullable String treatment) {
+    public void setTreatment(String treatment) {
         this.treatment = treatment;
     }
 
-    public double getCostPrice() {
-        return costPrice;
+    public ArticleModel getArticle() {
+        return article;
     }
 
-    public void setCostPrice(double costPrice) {
-        this.costPrice = costPrice;
-    }
-
-    @Nullable
-    public String getOrderNumber() {
-        return orderNumber;
-    }
-
-    public void setOrderNumber(@Nullable String orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    @Nullable
-    public String getInvoiceNumber() {
-        return invoiceNumber;
-    }
-
-    public void setInvoiceNumber(@Nullable String invoiceNumber) {
-        this.invoiceNumber = invoiceNumber;
-    }
-
-    @Nullable
-    public String getInvoiceDate() {
-        return invoiceDate;
-    }
-
-    public void setInvoiceDate(@Nullable String invoiceDate) {
-        this.invoiceDate = invoiceDate;
+    public void setArticle(ArticleModel article) {
+        this.article = article;
     }
 }
