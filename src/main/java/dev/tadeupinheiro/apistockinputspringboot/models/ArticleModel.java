@@ -1,9 +1,7 @@
 package dev.tadeupinheiro.apistockinputspringboot.models;
 
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -28,6 +26,9 @@ public class ArticleModel {
 
     @Nullable
     private double width;
+
+    @ManyToOne
+    private ColorModel cor;
 
     public UUID getArticleCode() {
         return articleCode;
@@ -79,5 +80,13 @@ public class ArticleModel {
 
     public void setWidth(double width) {
         this.width = width;
+    }
+
+    public ColorModel getCor() {
+        return cor;
+    }
+
+    public void setCor(ColorModel cor) {
+        this.cor = cor;
     }
 }
