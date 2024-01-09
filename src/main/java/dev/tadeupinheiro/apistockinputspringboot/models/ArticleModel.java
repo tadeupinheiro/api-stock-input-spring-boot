@@ -14,7 +14,7 @@ import java.util.UUID;
 public class ArticleModel {
 
     @Id
-    private UUID articleCode;
+    private Integer articleCode;
 
     @Nullable
     private String articleName;
@@ -34,11 +34,11 @@ public class ArticleModel {
     @Nullable
     private double width;
 
-    public UUID getArticleCode() {
+    public Integer getArticleCode() {
         return articleCode;
     }
 
-    public void setArticleCode(UUID articleCode) {
+    public void setArticleCode(Integer articleCode) {
         this.articleCode = articleCode;
     }
 
