@@ -22,9 +22,6 @@ public class ArticleController {
 
     @Autowired
     ArticleService articleService;
-    @Autowired
-    ArticleRepository articleRepository;
-
     @PostMapping
     public ResponseEntity saveArticle (@RequestBody @Valid ArticleRecordDto articleRecordDto){
         var articleModel = new ArticleModel();
@@ -37,7 +34,7 @@ public class ArticleController {
 
     @GetMapping
     public ResponseEntity<List<ArticleModel>> getAllArticles (){
-        return ResponseEntity.status(HttpStatus.OK).body(articleRepository.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(articleService.findAllArticles());
     }
 
     @GetMapping("/{articleCode}")
@@ -52,13 +49,13 @@ public class ArticleController {
     @PutMapping("/{articleCode}")
     public ResponseEntity<Object> updateArticle(@PathVariable(value = "articleCode") Integer articleCode,
                                                 @RequestBody @Valid ArticleRecordDto articleRecordDto){
-        Optional<ArticleModel> articleModel = articleRepository.findById(articleRecordDto.articleCode());
+        Optional<ArticleModel> articleModel = articleService.findArticle(articleRecordDto.articleCode());
         if(articleModel.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("You can't update this article, her not exist.");
         }
         var articleModelFinal = articleModel.get();
         BeanUtils.copyProperties(articleRecordDto, articleModelFinal);
-        return ResponseEntity.status(HttpStatus.OK).body(articleRepository.save(articleModelFinal));
+        return ResponseEntity.status(HttpStatus.OK).body(articleService.saveArticle(articleModelFinal));
     }
 
     @DeleteMapping("/{articleCode}")
