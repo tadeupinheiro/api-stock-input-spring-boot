@@ -32,7 +32,7 @@ public class ArticleController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Article already exists");
         }
         BeanUtils.copyProperties(articleRecordDto, articleModel);
-        return ResponseEntity.status(HttpStatus.CREATED).body(articleRepository.save(articleModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(articleService.saveArticle(articleModel));
     }
 
     @GetMapping
@@ -42,11 +42,33 @@ public class ArticleController {
 
     @GetMapping("/{articleCode}")
     public ResponseEntity<Object> getOneArticle(@PathVariable(value = "articleCode") Integer id){
-        Optional<ArticleModel> articleModelOptional = articleRepository.findById(id);
+        Optional<ArticleModel> articleModelOptional = articleService.findArticle(id);
         if(articleModelOptional.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Get the article not is possible, because it no exist.");
         }
         return ResponseEntity.status(HttpStatus.FOUND).body(articleModelOptional.get());
+    }
+
+    @PutMapping("/{articleCode}")
+    public ResponseEntity<Object> updateArticle(@PathVariable(value = "articleCode") Integer articleCode,
+                                                @RequestBody @Valid ArticleRecordDto articleRecordDto){
+        Optional<ArticleModel> articleModel = articleRepository.findById(articleRecordDto.articleCode());
+        if(articleModel.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("You can't update this article, her not exist.");
+        }
+        var articleModelFinal = articleModel.get();
+        BeanUtils.copyProperties(articleRecordDto, articleModelFinal);
+        return ResponseEntity.status(HttpStatus.OK).body(articleRepository.save(articleModelFinal));
+    }
+
+    @DeleteMapping("/{articleCode}")
+    public ResponseEntity<Object> deleteArticle(@PathVariable(value = "articleCode") Integer articleCode){
+        if (!articleService.existsByArticleCode(articleCode)){
+            ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not is possible delete this article, her not found.");
+        }
+        Optional<ArticleModel> articleModel = articleService.findArticle(articleCode);
+        articleService.deleteArticle(articleModel.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Article from code " + articleCode + "was delete with success.");
     }
 
 }

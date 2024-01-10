@@ -5,7 +5,6 @@ import dev.tadeupinheiro.apistockinputspringboot.respositories.ArticleRepository
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ArticleService {
@@ -18,5 +17,19 @@ public class ArticleService {
 
     public boolean existsByArticleCode(Integer idArticle) {
         return this.articleRepository.existsById(idArticle);
+    }
+
+    public void deleteArticle(ArticleModel articleModel){
+        this.articleRepository.delete(articleModel);
+    }
+
+    public ArticleModel saveArticle(ArticleModel articleModel){
+        this.articleRepository.save(articleModel);
+        return articleModel;
+    }
+
+    public Optional<ArticleModel> findArticle(Integer idArticle){
+        Optional<ArticleModel> articleModel = this.articleRepository.findById(idArticle);
+        return articleModel;
     }
 }
