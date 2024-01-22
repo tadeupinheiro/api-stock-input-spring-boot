@@ -14,7 +14,7 @@ import java.util.UUID;
 public class ColorModel {
 
     @Id
-    private UUID colorCode;
+    private Integer colorCode;
 
     @Nullable
     private String colorName;
@@ -22,11 +22,11 @@ public class ColorModel {
     @OneToMany(mappedBy = "colorRelationship")
     private List<ProductModel> productModel;
 
-    public UUID getColorCode() {
+    public Integer getColorCode() {
         return colorCode;
     }
 
-    public void setColorCode(UUID colorCode) {
+    public void setColorCode(Integer colorCode) {
         this.colorCode = colorCode;
     }
 

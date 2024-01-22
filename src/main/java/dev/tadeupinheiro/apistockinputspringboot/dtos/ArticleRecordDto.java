@@ -1,7 +1,6 @@
 package dev.tadeupinheiro.apistockinputspringboot.dtos;
 
 import jakarta.annotation.Nullable;
-import java.util.UUID;
 
 public record ArticleRecordDto(
         @Nullable Integer articleCode,

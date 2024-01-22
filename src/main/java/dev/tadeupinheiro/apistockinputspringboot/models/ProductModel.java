@@ -10,7 +10,7 @@ import java.util.UUID;
 public class ProductModel {
 
     @Id
-    private UUID rollNumber;
+    private Integer rollNumber;
 
     @ManyToOne
     @JoinColumn(name = "article_id", nullable = false) //Define o nome da coluna da chave estrangeira
@@ -41,11 +41,11 @@ public class ProductModel {
     @Nullable
     private String invoiceDate;
 
-    public UUID getRollNumber() {
+    public Integer getRollNumber() {
         return rollNumber;
     }
 
-    public void setRollNumber(UUID rollNumber) {
+    public void setRollNumber(Integer rollNumber) {
         this.rollNumber = rollNumber;
     }
     @Nullable
@@ -107,5 +107,21 @@ public class ProductModel {
 
     public void setInvoiceDate(@Nullable String invoiceDate) {
         this.invoiceDate = invoiceDate;
+    }
+
+    public ArticleModel getArticleRelationship() {
+        return articleRelationship;
+    }
+
+    public void setArticleRelationship(ArticleModel articleRelationship) {
+        this.articleRelationship = articleRelationship;
+    }
+
+    public ColorModel getColorRelationship() {
+        return colorRelationship;
+    }
+
+    public void setColorRelationship(ColorModel colorRelationship) {
+        this.colorRelationship = colorRelationship;
     }
 }
